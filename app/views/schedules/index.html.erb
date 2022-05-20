@@ -1,0 +1,38 @@
+<h2>スケジュール一覧</h2>
+    <% if flash[:notice] %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <table>
+        <thred>
+            <tr>
+                <th>ID</th>
+                <th>タイトル</th>
+                <th>開始日</th>
+                <th>終了日</th>
+                <th>終日</th>
+                <th>スケジュール更新日時</th>
+                <th>確認</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+        </thred>
+        
+        <tbody>
+            <% @schedules.each do |schedule|%>
+                <tr>
+                    <th><%= schedule.id %></th>
+                    <th><%= schedule.title %></th>
+                    <th><%= schedule.start_at.strftime("%Y年%m月%d日") %></th>
+                    <th><%= schedule.finish_at.strftime("%Y年%m月%d日") %></th>
+                    <th><%= convert_boolean_to_character(schedule.allday) %></th>
+                    <th><%= schedule.updated_at.to_s(:datetime_jp1) %></th>
+                    <th><%= link_to "参照", schedule %></th>
+                    <th><%= link_to "編集", [:edit,schedule] %></th>
+                    <th><%= link_to "削除", schedule, method: :delete , data: { confirm: "本当に削除しますか？" }%></th>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+    
+    <p><%= link_to "スケジュール新規登録", :new_schedule %></p>
+

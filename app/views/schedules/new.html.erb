@@ -1,0 +1,41 @@
+<h2>ユーザー新規作成</h2>
+<% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<%= render "shared/error", obj: @schedule %>
+<%= form_for(@schedule) do |new| %>
+
+    <table>
+        <tr>
+            <th><%=new.label :title  ,"タイトル" %></th>
+            <td><%=new.text_field :title %></td>
+        </tr>
+        <tr>
+            <th><%=new.label :start_at  ,"開始日" %></th>
+            <td><%=new.date_field :start_at %></td>
+        </tr>
+        <tr>
+            <th><%=new.label :finish_at  ,"終了日" %></th>
+            <td><%=new.date_field :finish_at %></td>
+        </tr>
+        <tr>
+            <th><%=new.label :allday  ,"終日" %></th>
+            <td><%=new.check_box :allday %><p>終日の場合はチェックを入れます</p></td>
+            <!--check_box(オブジェクト名（newついてる時は省略可）, プロパティ名 [, オプション（省略可）, checked_value = "1"（省略可）, unchecked_value = "0"（省略可）])-->
+            
+        </tr>
+        <tr>
+            <th><%=new.label :memo  ,"スケジュールメモ" %></th>
+            <td><%=new.text_area :memo %></td>
+        </tr>
+    </table>
+    <div>
+        <ul>
+            <li><%= new.submit "スケジュールを新規登録する"%></li>
+            <li><%= link_to "スケジュール一覧に戻る" , :schedules %></li>
+        </ul>
+    </div>
+<% end %>
+    
+    
+     

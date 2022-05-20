@@ -3,13 +3,24 @@
   <head>
     <title>TaskApp</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <h1>Ruby on Rails スケジュール管理アプリ</h1>
+    </header>
     <%= yield %>
+    <footer>
+      <h1>現在の日時 :<%= Date.today %></h1>
+      <!--最初の画面のみ表示（INDEXアクションのみ表示）-->
+      <% case controller.action_name %>
+      <% when "index" %>
+      <!---モデル名scheduleの作成レコード数を表示-->
+        <h1>スケジュール合計 : <%= Schedule.count %></h1>
+      <% end %>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ
+      schedule: ユーザー 
+      
+    # model毎に定義したいattributesを記述
+    attributes:
+        schedule:
+          id: ID
+          # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+          title: タイトル
+          start_at: 開始日
+          finish_at: 終了日
+          allday: 終日
+          memo: スケジュールメモ
+  # 全てのmodelで共通して使用するattributesを定義
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
